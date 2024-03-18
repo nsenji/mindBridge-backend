@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors');
+
 require('dotenv').config();
 
 
@@ -19,12 +21,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 
 var indexRouter = require('./routes/index');
 var sendMailRoute = require("./routes/sendMail")
 app.use('/', indexRouter);
-app.use("/sendMail", sendMailRoute);
+app.use("/sendmail", sendMailRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -39,11 +42,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
 });
 
 
 // setting up server
-app.listen(process.env.PORT || 3000, () => console.log('server is started'));
+app.listen(process.env.PORT || 3030, () => console.log('server is started'));
 
 module.exports = app;
