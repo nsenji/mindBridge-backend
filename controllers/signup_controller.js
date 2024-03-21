@@ -1,5 +1,4 @@
 
-
 const database = require("../database/index");
 
 const Patient = database.Patient;
