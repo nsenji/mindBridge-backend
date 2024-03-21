@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 
 
 module.exports = (sequelise_instance, Sequelize) => {

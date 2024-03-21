@@ -1,5 +1,4 @@
 
-
 var express = require("express");
 var router = express.Router();
 
@@ -8,9 +7,9 @@ const loginController = require("../controllers/login_controller")
 
 
 
-router.post("/login", loginController.login);
+router.get("/login", loginController.login);
 
-router.post("/signup", signupController.signup)
+router.get("/signup", signupController.signup)
 
 
 
