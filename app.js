@@ -33,10 +33,10 @@ app.use(cors());
 
 var indexRouter = require('./routes/index');
 var sendMailRoute = require("./routes/sendMail");
-var authRoute = require("./routes/auth")
+var patientauthRoute = require("./routes/patient_auth")
 app.use('/', indexRouter);
 app.use("/sendmail", sendMailRoute);
-app.use("/auth", authRoute )
+app.use("/patientauth", patientauthRoute );
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

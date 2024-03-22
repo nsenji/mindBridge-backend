@@ -3,7 +3,7 @@ const database = require("../database/index");
 
 const Patient = database.Patient;
 
-exports.signup = async (req, res, next )=>{
+exports.patient_signup = async (req, res, next )=>{
     const name = "nsenji";
     const email = "nsengiyumvavictor@gmail.com";
     const password = "done1234"
