@@ -1,8 +1,8 @@
 
 
 module.exports = (sequelise_instance, Sequelize) => {
-    ProfilePic = sequelise_instance.define("profilePics", {
-        pic_ID: {
+    MedicalLicense = sequelise_instance.define("medicalLicenses", {
+        license_ID: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,
@@ -14,10 +14,10 @@ module.exports = (sequelise_instance, Sequelize) => {
               key: 'doc_ID',
             },
           },
-        pic_locator:{
+        license_locator:{
             type:Sequelize.STRING
         }
     });
 
-    return ProfilePic;
+    return MedicalLicense;
 }

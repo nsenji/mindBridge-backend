@@ -1,8 +1,8 @@
 
 
 module.exports = (sequelise_instance, Sequelize) => {
-    ProfilePic = sequelise_instance.define("profilePics", {
-        pic_ID: {
+    CV = sequelise_instance.define("CVs", {
+        cv_ID: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,
@@ -14,10 +14,10 @@ module.exports = (sequelise_instance, Sequelize) => {
               key: 'doc_ID',
             },
           },
-        pic_locator:{
+        cv_locator:{
             type:Sequelize.STRING
         }
-    });
+    })
 
-    return ProfilePic;
+    return CV;
 }

@@ -20,6 +20,9 @@ module.exports = (sequelise_instance, Sequelize) => {
             type: Sequelize.STRING,
 
         },
+        languages_spoken:{
+            type: Sequelize.STRING,
+        },
         rate: {
             type: Sequelize.DOUBLE,
         },
