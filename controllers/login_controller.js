@@ -2,7 +2,7 @@
 var database = require("../database/index");
 const bcrypt = require('bcrypt');
 const Patient = database.Patient;
-const Doctor = database.Doctor
+const Doctor = database.Doctor;
 
 
 
