@@ -8,7 +8,6 @@ exports.signup = async (req, res, next )=>{
     const email = "nsengiyumvavictor@gmail.com";
     const password = "done1234"
 
-    console.log("ahs entereed the function")
     const user = {
         name : name,
         email : email,
@@ -17,12 +16,13 @@ exports.signup = async (req, res, next )=>{
 
     await Patient.create(user)
     .then(data => {
-        res.send(data);
+        res.status(201).json({message: "Account created successfully", data:data});
     })
     .catch(err => {
-        res.send(
-            `Some error occurred while creating the User ${err}`
-        );
+       if(err.name === "SequelizeUniqueConstraintError"){
+        res.status(400).json({message: "User with that email already exists"})
+       }
+       res.status(400).json({message: "There was an error while creating account"})
     });
 
 
