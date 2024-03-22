@@ -7,9 +7,9 @@ const patientloginController = require("../controllers/login_controller")
 
 
 
-router.get("/login", patientloginController.patient_login);
+router.post("/login", patientloginController.patient_login);
 
-router.get("/signup", patientsignupController.patient_signup)
+router.post("/signup", patientsignupController.patient_signup)
 
 
 module.exports = router;

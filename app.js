@@ -23,7 +23,7 @@ database.sequelise_instance.sync().then(() => { console.log("synced the database
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// other setup
+// other middleware setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,11 +35,13 @@ app.use(cors());
 var indexRouter = require('./routes/index');
 var sendMailRoute = require("./routes/sendMail");
 var patientauthRoute = require("./routes/patient_auth");
-var doctorauthRoute = require("./routes/doctor_auth")
+var doctorauthRoute = require("./routes/doctor_auth");
+var createscheduleRoute = require("./routes/create_schedule");
 app.use('/', indexRouter);
 app.use("/sendmail", sendMailRoute);
 app.use("/patientauth", patientauthRoute );
 app.use("/doctoauth", doctorauthRoute);
+app.use("/schedule", createscheduleRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
