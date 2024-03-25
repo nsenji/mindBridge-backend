@@ -13,7 +13,7 @@ module.exports = (sequelise_instance, Sequelize)=>{
             type: Sequelize.STRING
         },
         status:{
-            type:Sequelize.STRING
+            type:Sequelize.STRING  // either active or done
         },
         doctorID: {
             type: Sequelize.UUID,
