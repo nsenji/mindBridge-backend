@@ -6,7 +6,7 @@ module.exports = (sequelise_instance, Sequelize)=>{
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,
         },
-        data:{
+        date:{
             type:Sequelize.STRING
         },
         time:{

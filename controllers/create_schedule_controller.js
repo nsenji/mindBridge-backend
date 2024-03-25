@@ -8,7 +8,7 @@ exports.create_schedule = async (req, res, next) => {
         data: "12-04-24",
         time: "12:34",
         status: "active",
-        doctorID: 31, // here use one of the UUIDs of the doctor that is in the database already
+        doctorID: "", // here use one of the UUIDs of the doctor that is in the database already
     }
 
     await AppointmentSchedule.create(schedule)
