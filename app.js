@@ -37,11 +37,13 @@ var sendMailRoute = require("./routes/sendMail");
 var patientauthRoute = require("./routes/patient_auth");
 var doctorauthRoute = require("./routes/doctor_auth");
 var createscheduleRoute = require("./routes/create_schedule");
+var get_vidoe_sdkRoute =require("./routes/get_vidoesdk_key_route");
 app.use('/', indexRouter);
 app.use("/sendmail", sendMailRoute);
 app.use("/patientauth", patientauthRoute );
 app.use("/doctoauth", doctorauthRoute);
 app.use("/schedule", createscheduleRoute);
+app.use("/vidoesdk", get_vidoe_sdkRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
