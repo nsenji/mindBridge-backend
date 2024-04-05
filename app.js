@@ -37,11 +37,14 @@ var sendMailRoute = require("./routes/sendMail");
 var patientauthRoute = require("./routes/patient_auth");
 var doctorauthRoute = require("./routes/doctor_auth");
 var createscheduleRoute = require("./routes/create_schedule");
+var getSchedules = require("./routes/get_schedules")
+
 app.use('/', indexRouter);
 app.use("/sendmail", sendMailRoute);
 app.use("/patientauth", patientauthRoute );
 app.use("/doctoauth", doctorauthRoute);
 app.use("/schedule", createscheduleRoute);
+app.use("/schedule", getSchedules)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

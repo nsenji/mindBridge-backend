@@ -5,10 +5,10 @@ const AppointmentSchedule = database.AppointmentSchedule;
 
 exports.create_schedule = async (req, res, next) => {
     const schedule = {
-        data: "12-04-24",
-        time: "12:34",
-        status: "active",
-        doctorID: "", // here use one of the UUIDs of the doctor that is in the database already
+        date: req.body.date,
+        time: req.body.time,
+        status: req.body.status,
+        doctorID: req.body.doctorID,
     }
 
     await AppointmentSchedule.create(schedule)
@@ -16,7 +16,7 @@ exports.create_schedule = async (req, res, next) => {
             res.status(201).json({ message: "Schedule created successfully", data: data });
         })
         .catch(err => {
-           
+
             res.status(400).json({ message: "There was an error while creating schedule" + err })
         })
 }
