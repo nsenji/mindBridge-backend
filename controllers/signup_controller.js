@@ -22,7 +22,6 @@ exports.patient_signup = async (req, res, next) => {
             if (err.name === "SequelizeUniqueConstraintError") {
                 res.status(400).json({ message: "User with that email already exists" })
             } else {
-
                 res.status(400).json({ message: "There was an error while creating account" })
             }
         });
