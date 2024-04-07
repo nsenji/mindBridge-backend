@@ -18,11 +18,11 @@ module.exports = (sequelise_instance, Sequelize) => {
         doctorID: {
             type: Sequelize.UUID,
             references: {
-              model: Doctor,
+              model: "doctors",
               key: 'doc_ID',
             },
           },
-    });
+    }, {timestamp: false});
 
     return AppointmentSchedule;
 }

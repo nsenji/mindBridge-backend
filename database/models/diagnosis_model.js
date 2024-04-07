@@ -1,6 +1,4 @@
-
-
-module.exports = (sequelise_instance, Sequelize) => {
+module.exports = (sequelise_instance, Sequelize,) => {
     const Diagnosis = sequelise_instance.define("diagnosis", {
         diagnosis_ID: {
             type: Sequelize.UUID,
@@ -61,7 +59,7 @@ module.exports = (sequelise_instance, Sequelize) => {
         patientID: {
             type: Sequelize.UUID,
             references: {
-                model: Patient,
+                model: "patients",
                 key: 'patient_ID'
             }
         }

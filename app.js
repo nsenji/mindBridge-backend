@@ -38,6 +38,7 @@ var patientauthRoute = require("./routes/patient_auth");
 var doctorauthRoute = require("./routes/doctor_auth");
 var createscheduleRoute = require("./routes/create_schedule");
 var get_video_sdkRoute =require("./routes/get_vidoesdk_key_route");
+
 app.use('/', indexRouter);
 app.use("/sendmail", sendMailRoute);
 app.use("/patientauth", patientauthRoute );

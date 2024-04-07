@@ -6,3 +6,6 @@ const createscheduleController = require("../controllers/create_schedule_control
 
 
 router.post("/createschedule",createscheduleController.create_schedule);
+
+
+module.exports = router;
