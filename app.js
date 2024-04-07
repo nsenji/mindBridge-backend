@@ -42,7 +42,7 @@ var get_video_sdkRoute =require("./routes/get_vidoesdk_key_route");
 app.use('/', indexRouter);
 app.use("/sendmail", sendMailRoute);
 app.use("/patientauth", patientauthRoute );
-app.use("/doctoauth", doctorauthRoute);
+app.use("/doctorauth", doctorauthRoute);
 app.use("/schedule", createscheduleRoute);
 app.use("/vidoesdk", get_video_sdkRoute);
 
