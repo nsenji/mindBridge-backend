@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 exports.get_videosdk_key = (req, res, next) => {
 
     try {
-
         const options = {
             expiresIn: '120m',
             algorithm: 'HS256'
@@ -24,7 +23,5 @@ exports.get_videosdk_key = (req, res, next) => {
         res.status(400).json({message:"There was an error :", error:error })
 
     }
-
-
 
 }
