@@ -6,7 +6,7 @@ const createscheduleController = require("../controllers/create_schedule_control
 const getAllSchedulesController  = require("../controllers/getSchedulesController")
 
 router.post("/createschedule",createscheduleController.create_schedule);
-router.post('/getschedule', getAllSchedulesController.getAllSchedules)
+router.post('/getschedules', getAllSchedulesController.getAllSchedules)
 
 
 module.exports = router;
