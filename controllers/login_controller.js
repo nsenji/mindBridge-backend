@@ -9,24 +9,21 @@ const Doctor = database.Doctor;
 // Patient login
 exports.patient_login = async (req, res, next) => {
 
-    const email = "nsengiyumvavictor@gmail.com";
-    const password = "done1234"
-
     // returns null if no one exists with that email or an object of user if they exist
-    const patient = await Patient.findOne({ where: { email } });
+    const patient = await Patient.findOne({ where: { email: req.body.email } });
 
     if(!patient){
-        res.status(401).json({message:"A user with that email doesnt exist"})
+        return res.status(401).json({message:"A user with that email doesnt exist"})
     }
 
     // verify whether the password belongs to the email sent
 
-    const passwordMatch = await bcrypt.compare(password, patient.password);
+    const passwordMatch = await bcrypt.compare(req.body.password, patient.password);
 
     if(passwordMatch){
-        res.status(201).json({message:"Login successful", data: patient});
+        return res.status(201).json({message:"Login successful", data: patient});
     }else{
-        res.status(401).json({message: "Wrong password"});
+        return res.status(401).json({message: "Wrong password"});
     }
 }
 
@@ -36,24 +33,25 @@ exports.patient_login = async (req, res, next) => {
 // doctor login
 exports.doctor_login = async (req, res, next) => {
 
-    const email = "nsengiyumvavictor@gmail.com";
-    const password = "done1234"
+    try{
+        // returns null if no one exists with that email or an object of user if they exist
+        const doctor = await Doctor.findOne({ where: { email: req.body.email } });
 
-    // returns null if no one exists with that email or an object of user if they exist
-    const doctor = await Doctor.findOne({ where: { email } });
+        if(!doctor){
+            console.log("This response")
+            return res.status(404).json({message:"A user with that email doesnt exist"})
+        }
 
-    if(!doctor){
-        res.status(401).json({message:"A user with that email doesnt exist"})
-    }
+            // verify whether the password belongs to the email sent
+        const passwordMatch = await bcrypt.compare(req.body.password, doctor.password);
 
-    // verify whether the password belongs to the email sent
-
-    const passwordMatch = await bcrypt.compare(password, doctor.password);
-
-    if(passwordMatch){
-        res.status(201).json({message:"Login successful", data: doctor});
-    }else{
-        res.status(401).json({message: "Wrong password"});
+        if(passwordMatch){
+            return res.status(201).json({message:"Login successful", data: doctor});
+        }else{
+            return res.status(401).json({message: "Wrong password"});
+        }
+    } catch(error){
+        return res.status(401).json({ message: "Can't Login" + error })
     }
 }
 
