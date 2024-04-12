@@ -14,8 +14,6 @@ exports.getAllDoctors = async (req, res, next) => {
 
             allDoctors.map(async doctor => {
 
-                // add doctor object to new object
-                // overallObject = { ...doctor };
 
                 // query the schedules for this particular doctor
                 let schedules_1 = await AppointmentSchedule.findAll({ where: { doctorID: doctor["doc_ID"] } })
@@ -39,7 +37,7 @@ exports.getAllDoctors = async (req, res, next) => {
                     dateSet.add(element["date"])
                 });
 
-                let outerObject = {}
+                let outerObject = []
 
                 // go through each date and get its time periods then add both to the outerObject
                 dateSet.forEach(element_1 => {
@@ -56,8 +54,8 @@ exports.getAllDoctors = async (req, res, next) => {
                     });
 
                     innerObject["actual_time"] = newList;
-
-                    outerObject[element_1] = innerObject
+                    outerObject.push(innerObject);
+                    // outerObject[element_1] = innerObject
 
                 })
 
