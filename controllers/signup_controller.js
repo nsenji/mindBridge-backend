@@ -17,13 +17,13 @@ exports.patient_signup = async (req, res, next) => {
     await Patient.create(user)
 
         .then(data => {
-           return res.status(201).json({ message: "Account created successfully", data: data });
+            return res.status(201).json({ message: "Account created successfully", data: data });
         })
         .catch(err => {
             if (err.name === "SequelizeUniqueConstraintError") {
-              return  res.status(400).json({ message: "User with that email already exists" })
+                return res.status(400).json({ message: "User with that email already exists" })
             } else {
-              return  res.status(400).json({ message: "There was an error while creating account" })
+                return res.status(400).json({ message: "There was an error while creating account" })
             }
         });
 
@@ -48,13 +48,13 @@ exports.doctor_signup = async (req, res, next) => {
 
     await Doctor.create(user)
         .then(data => {
-            res.status(201).json({ message: "Account created successfully", data: data });
+            return res.status(201).json({ message: "Account created successfully", data: data });
         })
         .catch(err => {
             if (err.name === "SequelizeUniqueConstraintError") {
-                res.status(400).json({ message: "User with that email already exists" })
+                return res.status(400).json({ message: "User with that email already exists" })
             } else {
-                res.status(400).json({ message: "There was an error while creating account" })
+                return res.status(400).json({ message: "There was an error while creating account" })
             }
         });
 
