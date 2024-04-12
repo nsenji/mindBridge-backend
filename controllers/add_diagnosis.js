@@ -1,4 +1,4 @@
-
+// verified
 
 var database = require("../database/index");
 const Diagnosis = database.Diagnosis;
@@ -7,24 +7,24 @@ const Diagnosis = database.Diagnosis;
 exports.add_diagnosis = async (req, res, next) => {
 
     const diagnosis_data = {
-        sadness: "Seldom",
-        euphoric: "Most-Often",
-        exhausted: "Sometimes",
-        sleep_dissorder: "Seldom",
-        mood_swing: "NO",
-        suicidal_thoughts: "NO",
-        anorexia: "NO",
-        authority_respect: "YES",
-        try_explanation: "YES",
-        aggressive_response: "NO",
-        ignore_and_move_on: "NO",
-        nervous_breakdown: "NO",
-        admit_mistakes: "YES",
-        overthinking: "NO",
-        sexual_activity: "2 From 10",
-        concentration: "9 From 10",
-        optimism: "9 From 10",
-        patientID: ""  // use one of the UUIDs of the patients that are in the database
+        sadness: req.body.sadness,
+        euphoric: req.body.euphoric,
+        exhausted: req.body.exhausted,
+        sleep_dissorder: req.body.sleep_dissorder,
+        mood_swing: req.body.mood_swing,
+        suicidal_thoughts: req.body.suicidal_thoughts,
+        anorexia: req.body.anorexia,
+        authority_respect: req.body.authority_respect,
+        try_explanation:req.body.try_explanation,
+        aggressive_response: req.body.aggressive_response,
+        ignore_and_move_on:req.body.ignore_and_move_on,
+        nervous_breakdown: req.body.nervous_breakdown,
+        admit_mistakes: req.body.admit_mistakes,
+        overthinking: req.body.overthinking,
+        sexual_activity: req.body.sexual_activity,
+        concentration: req.body.concentration,
+        optimism: req.body.optimism,
+        patientID: req.body.patientID 
     }
 
     await Diagnosis.create(diagnosis_data)

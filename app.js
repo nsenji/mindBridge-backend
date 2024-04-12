@@ -39,6 +39,7 @@ var doctorauthRoute = require("./routes/doctor_auth");
 var scheduleRoute = require("./routes/schedule");
 var get_video_sdkRoute = require("./routes/get_vidoesdk_key_route");
 var allDoctorsRoute = require("./routes/get_all_doctors");
+var diagnosisRoute = require("./routes/diagnosis");
 
 app.use('/', indexRouter);
 app.use("/sendmail", sendMailRoute);
@@ -47,6 +48,7 @@ app.use("/doctorauth", doctorauthRoute);
 app.use("/schedule", scheduleRoute);
 app.use("/vidoesdk", get_video_sdkRoute);
 app.use("/alldoctors", allDoctorsRoute);
+app.use("/diagnosis", diagnosisRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
