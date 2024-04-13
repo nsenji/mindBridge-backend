@@ -15,7 +15,7 @@ require('dotenv').config();
 // database tracking
 const database = require("./database/index");
 console.log(database.sequelise_instance);
-database.sequelise_instance.sync().then(() => { console.log("synced the database") }).catch((err) => { console.log("failed to sync the database") });
+database.sequelise_instance.sync({alter:true}).then(() => { console.log("synced the database") }).catch((err) => { console.log("failed to sync the database") });
 
 
 
