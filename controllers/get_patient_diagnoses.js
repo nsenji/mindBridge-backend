@@ -10,7 +10,7 @@ exports.getPatientDiagnoses = async (req, res, next) => {
         return res.status(201).json({ data: response })
 
     } catch (error) {
-        res.status(400).json({ message: "Couldn't get diagnoses" + error })
+       return res.status(400).json({ message: "Couldn't get diagnoses" + error })
 
     }
 

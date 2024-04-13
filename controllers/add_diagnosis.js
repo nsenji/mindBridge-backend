@@ -24,6 +24,7 @@ exports.add_diagnosis = async (req, res, next) => {
         sexual_activity: req.body.sexual_activity,
         concentration: req.body.concentration,
         optimism: req.body.optimism,
+        result: req.body.result,
         patientID: req.body.patientID 
     }
 

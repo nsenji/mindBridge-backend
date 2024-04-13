@@ -56,6 +56,9 @@ module.exports = (sequelise_instance, Sequelize,) => {
         optimism: {
             type: Sequelize.STRING,
         },
+        result:{
+            type: Sequelize.STRING,
+        },
         patientID: {
             type: Sequelize.UUID,
             references: {
