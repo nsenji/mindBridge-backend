@@ -32,6 +32,11 @@ database.Doctor = doctor_module(sequelise_instance,Sequelize);
 database.AppointmentSchedule = schedule_appointment(sequelise_instance,Sequelize);
 database.Diagnosis = diagnosis_module(sequelise_instance,Sequelize);
 database.Payment = payment_module(sequelise_instance,Sequelize)
-database.SelectedAppointments = selected_appointments(sequelise_instance, Sequelize)
+database.SelectedAppointment = selected_appointments(sequelise_instance, Sequelize)
 
+
+//Relationships
+//Selected Appointements
+database.SelectedAppointment.belongsTo(database.Doctor, {foreignKey: 'doctorID', targetKey: 'doc_ID'})
+database.SelectedAppointment.belongsTo(database.Patient, {foreignKey: 'patientID', targetKey: 'patient_ID'})
 module.exports = database;
