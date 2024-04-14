@@ -18,7 +18,7 @@ module.exports = (sequelise_instance, Sequelize)=>{
         doctorID: {
             type: Sequelize.UUID,
             references: {
-              model: Doctor,
+              model: "doctors",
               key: 'doc_ID',
             },
           },
@@ -26,7 +26,7 @@ module.exports = (sequelise_instance, Sequelize)=>{
         patientID:{
             type: Sequelize.UUID,
             references:{
-                model: Patient,
+                model: "patients",
                 key:'patient_ID'
             }
         }

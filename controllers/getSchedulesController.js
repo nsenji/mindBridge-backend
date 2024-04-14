@@ -18,6 +18,6 @@ exports.getAllSchedules = async (req, res, next) => {
         return res.status(201).json({ data: schedules_3 })
 
     } catch (error) {
-        res.status(400).json({ message: "Couldn't get Schedules" + error })
+        res.status(400).json({ message: "Couldn't get Schedules: " + error.message })
     }
 }

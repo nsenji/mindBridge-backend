@@ -25,13 +25,13 @@ const doctor_module = require("./models/doctor_model");
 const schedule_appointment = require("./models/appointment_schedule_model");
 const diagnosis_module = require("./models/diagnosis_model");
 const payment_module = require("./models/payments_model");
-
+const selected_appointments = require("./models/selected_appointment_model")
 
 database.Patient = patient_module(sequelise_instance,Sequelize);
 database.Doctor = doctor_module(sequelise_instance,Sequelize);
 database.AppointmentSchedule = schedule_appointment(sequelise_instance,Sequelize);
 database.Diagnosis = diagnosis_module(sequelise_instance,Sequelize);
 database.Payment = payment_module(sequelise_instance,Sequelize)
-
+database.SelectedAppointments = selected_appointments(sequelise_instance, Sequelize)
 
 module.exports = database;
