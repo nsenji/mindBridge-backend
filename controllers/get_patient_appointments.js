@@ -14,7 +14,6 @@ exports.getPatientAppointments = async (req, res, next) => {
             }, include: {
                 model: Doctor,
                 attributes: ["name"],
-                as: "doctorName"
             }
         });
 
