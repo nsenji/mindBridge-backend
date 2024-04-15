@@ -17,12 +17,16 @@ exports.getPatientAppointments = async (req, res, next) => {
             }
         });
 
-        activeAppointments = response.filter((value) => {
+     var activeAppointments = response.filter((value) => {
             const dateString = value.date;
             const formattedDate = moment(dateString, "ddd, DD MMM YYYY").format("YYYY-MM-DD");
             const currentDate = moment();
             return formattedDate >= currentDate.format("YYYY-MM-DD")
         })
+
+       activeAppointments.forEach(element => {
+            element["date"] = moment(element["date"], "ddd, DD MMM YYYY").format("YYYY-MM-DD")
+        });
 
         return res.status(201).json({ data: activeAppointments })
 
