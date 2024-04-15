@@ -5,11 +5,11 @@ exports.add_payment = async (req, res, next) => {
 
 
     const payment_data = {
-        date: "21-03-24",
-        time: "12:04",
-        amount: 45000,
-        doctorID: "",  // add the UUID for these last 2 
-        patientID: "",
+        date: req.body.date,
+        time: req.body.time,
+        amount: req.body.amount,
+        doctorID: req.body.doctorID,  
+        patientID: req.body.patientID,
     }
 
     await Payment.create(payment_data)
