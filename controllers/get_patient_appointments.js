@@ -1,6 +1,6 @@
 const database = require("../database/index")
 const moment = require('moment');
-
+const Doctor = database.Doctor;
 
 const SelectedAppointment = database.SelectedAppointment
 
@@ -11,6 +11,10 @@ exports.getPatientAppointments = async (req, res, next) => {
         var response = await SelectedAppointment.findAll({
             where: {
                 patientID: incomingPatientID, status: "active",
+            }, include: {
+                model: Doctor,
+                attributes: ["name"],
+                as: "doctorName"
             }
         });
 
@@ -20,7 +24,7 @@ exports.getPatientAppointments = async (req, res, next) => {
             const currentDate = moment();
             return formattedDate >= currentDate.format("YYYY-MM-DD")
         })
-        
+
         return res.status(201).json({ data: activeAppointments })
 
     } catch (error) {
