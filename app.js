@@ -33,7 +33,7 @@ app.use(cors());
 
 // routing
 var indexRouter = require('./routes/index');
-var sendMailRoute = require("./routes/sendMail");
+var sendMailRoute = require("./routes/send_mail");
 var patientauthRoute = require("./routes/patient_auth");
 var doctorauthRoute = require("./routes/doctor_auth");
 var scheduleRoute = require("./routes/schedule");

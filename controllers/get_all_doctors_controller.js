@@ -3,6 +3,7 @@ const database = require("../database/index")
 
 const Doctor = database.Doctor
 const AppointmentSchedule = database.AppointmentSchedule
+const SelectedAppointment = database.SelectedAppointment
 
 
 exports.getAllDoctors = async (req, res, next) => {
@@ -41,6 +42,7 @@ exports.getAllDoctors = async (req, res, next) => {
 
                 // go through each date and get its time periods then add both to the outerObject
                 dateSet.forEach(element_1 => {
+                    
                     let innerObject = {}
 
                     innerObject["date"] = element_1;
