@@ -39,8 +39,10 @@ database.SelectedAppointment = selected_appointments(sequelise_instance, Sequeli
 //Selected Appointements
 database.SelectedAppointment.belongsTo(database.Doctor, {foreignKey: 'doctorID', targetKey: 'doc_ID'})
 database.SelectedAppointment.belongsTo(database.Patient, {foreignKey: 'patientID', targetKey: 'patient_ID'})
+database.Payment.belongsTo(database.Doctor, {foreignKey: 'doctorID', targetKey: 'doc_ID'})
 
 database.Doctor.hasMany(database.SelectedAppointment, {foreignKey: 'doctorID'})
 database.Patient.hasMany(database.SelectedAppointment, {foreignKey: 'patientID'})
+database.Doctor.hasMany(database.Payment, {foreignKey: 'doctorID'})
 
 module.exports = database;
