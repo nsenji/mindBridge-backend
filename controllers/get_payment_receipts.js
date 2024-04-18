@@ -6,7 +6,12 @@ const Payment = database.Payment
 exports.getPayments = async (req, res, next) => {
     const incomingPatientID = req.body.patientID
     try {
-        var response = await Payment.findAll({ where: { patientID: incomingPatientID } });
+        var response = await Payment.findAll({ where: { patientID: incomingPatientID }, include:[
+            {
+                model: database.Doctor,
+                attributes: ['name'],
+            }
+        ] });
         return res.status(201).json({ data: response })
 
     } catch (error) {
