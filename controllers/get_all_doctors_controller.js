@@ -4,12 +4,14 @@ const database = require("../database/index")
 const Doctor = database.Doctor
 const AppointmentSchedule = database.AppointmentSchedule
 const SelectedAppointment = database.SelectedAppointment
+const Avatar = database.Avatar
 
 
 exports.getAllDoctors = async (req, res, next) => {
 
     try {
-        var allDoctors = await Doctor.findAll()
+        var allDoctors = await Doctor.findAll({include:{model: Avatar,
+            attributes: ["file_name"],as: "avatar"}})
 
         const value = await Promise.all(
 

@@ -38,17 +38,26 @@ database.Avatar = avatar_module(sequelise_instance,Sequelize);
 
 
 //Relationships
+
 //Selected Appointements
 database.SelectedAppointment.belongsTo(database.Doctor, {foreignKey: 'doctorID', targetKey: 'doc_ID'})
 database.SelectedAppointment.belongsTo(database.Patient, {foreignKey: 'patientID', targetKey: 'patient_ID'})
-database.Payment.belongsTo(database.Doctor, {foreignKey: 'doctorID', targetKey: 'doc_ID'})
 
 database.Doctor.hasMany(database.SelectedAppointment, {foreignKey: 'doctorID'})
 database.Patient.hasMany(database.SelectedAppointment, {foreignKey: 'patientID'})
+
+
+// payments
+database.Payment.belongsTo(database.Doctor, {foreignKey: 'doctorID', targetKey: 'doc_ID'})
 database.Doctor.hasMany(database.Payment, {foreignKey: 'doctorID'})
+
 
 //Diagnosis
 database.Diagnosis.belongsTo(database.Patient, {foreignKey: 'patientID', targetKey: 'patient_ID'})
+database.Patient.hasMany(database.Diagnosis, {foreignKey: 'patientID'})
 
-database.Patient.hasOne(database.Diagnosis, {foreignKey: 'patientID'})
+
+// avatar
+database.Avatar.belongsTo(database.Doctor, {foreignKey: "doctorID", targetKey:"doc_ID"})
+database.Doctor.hasOne(database.Avatar, {foreignKey:"doctorID"})
 module.exports = database;
