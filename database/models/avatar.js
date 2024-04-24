@@ -9,6 +9,7 @@ module.exports = (sequelise_instance, Sequelize) => {
         },
         doctorID: {
             type: Sequelize.UUID,
+            unique:true,
             references: {
               model: "doctors",
               key: 'doc_ID',

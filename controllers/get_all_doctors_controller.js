@@ -10,8 +10,12 @@ const Avatar = database.Avatar
 exports.getAllDoctors = async (req, res, next) => {
 
     try {
-        var allDoctors = await Doctor.findAll({include:{model: Avatar,
-            attributes: ["file_name"],as: "avatar"}})
+        var allDoctors = await Doctor.findAll({
+            include: {
+                model: Avatar,
+                attributes: ["file_name"], as: "avatar"
+            }
+        })
 
         const value = await Promise.all(
 
@@ -31,10 +35,10 @@ exports.getAllDoctors = async (req, res, next) => {
                         return timeA - timeB
                     })
 
-                
+
                 // create set to store all the dates
                 let dateSet = new Set();
-                
+
                 // add each date to the set
                 schedules_3.forEach(element => {
                     dateSet.add(element["date"])
@@ -44,7 +48,7 @@ exports.getAllDoctors = async (req, res, next) => {
 
                 // go through each date and get its time periods then add both to the outerObject
                 dateSet.forEach(element_1 => {
-                    
+
                     let innerObject = {}
 
                     innerObject["date"] = element_1;
