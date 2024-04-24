@@ -47,4 +47,8 @@ database.Doctor.hasMany(database.SelectedAppointment, {foreignKey: 'doctorID'})
 database.Patient.hasMany(database.SelectedAppointment, {foreignKey: 'patientID'})
 database.Doctor.hasMany(database.Payment, {foreignKey: 'doctorID'})
 
+//Diagnosis
+database.Diagnosis.belongsTo(database.Patient, {foreignKey: 'patientID', targetKey: 'patient_ID'})
+
+database.Patient.hasOne(database.Diagnosis, {foreignKey: 'patientID'})
 module.exports = database;
