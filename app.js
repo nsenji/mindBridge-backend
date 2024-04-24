@@ -43,7 +43,7 @@ var allDoctorsRoute = require("./routes/get_all_doctors");
 var diagnosisRoute = require("./routes/diagnosis");
 var appointmentsRoute = require("./routes/appointments");
 var paymentsRoute = require("./routes/payments");
-var uploadImageRoute = require("./routes/upload_image");
+var {router} = require("./routes/upload_image");
 
 app.use('/', indexRouter);
 app.use("/sendmail", sendMailRoute);
@@ -55,7 +55,7 @@ app.use("/alldoctors", allDoctorsRoute);
 app.use("/diagnosis", diagnosisRoute);
 app.use("/appointments" , appointmentsRoute)
 app.use("/payments", paymentsRoute);
-app.use("/uploads", uploadImageRoute);
+app.use("/uploads", router);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -12,6 +12,7 @@ function getFileExtension(filename) {
     // Return the file extension 
     return extension.toLowerCase(); 
 }
+
 const storage_1 = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './public/uploads')
@@ -32,4 +33,4 @@ const uploadImageController = require("../controllers/upload_image_controller");
 
 router.post("/uploadavatar", upload.single('avatar'), uploadImageController.uploadImage);
 
-module.exports = router;
+module.exports = {router, getFileExtension};    

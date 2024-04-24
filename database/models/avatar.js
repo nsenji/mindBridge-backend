@@ -1,7 +1,7 @@
 
 
 module.exports = (sequelise_instance, Sequelize) => {
-    ProfilePic = sequelise_instance.define("profilePics", {
+    Avatar = sequelise_instance.define("avatars", {
         pic_ID: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
@@ -10,14 +10,14 @@ module.exports = (sequelise_instance, Sequelize) => {
         doctorID: {
             type: Sequelize.UUID,
             references: {
-              model: Doctor,
+              model: "doctors",
               key: 'doc_ID',
             },
           },
-        pic_locator:{
+        file_name: {
             type:Sequelize.STRING
         }
     });
 
-    return ProfilePic;
+    return Avatar;
 }
