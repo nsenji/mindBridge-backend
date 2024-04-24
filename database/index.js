@@ -34,7 +34,7 @@ database.AppointmentSchedule = schedule_appointment(sequelise_instance,Sequelize
 database.Diagnosis = diagnosis_module(sequelise_instance,Sequelize);
 database.Payment = payment_module(sequelise_instance,Sequelize);
 database.SelectedAppointment = selected_appointments(sequelise_instance, Sequelize);
-// database.Avatar = avatar_module(sequelise_instance,Sequelize);
+database.Avatar = avatar_module(sequelise_instance,Sequelize);
 
 
 //Relationships
@@ -58,6 +58,6 @@ database.Patient.hasMany(database.Diagnosis, {foreignKey: 'patientID'})
 
 
 // avatar
-// database.Avatar.belongsTo(database.Doctor, {foreignKey: "doctorID", targetKey:"doc_ID"})
-// database.Doctor.hasOne(database.Avatar, {foreignKey:"doctorID"})
+database.Avatar.belongsTo(database.Doctor, {foreignKey: "doctorID", targetKey:"doc_ID"})
+database.Doctor.hasOne(database.Avatar, {foreignKey:"doctorID"})
 module.exports = database;
