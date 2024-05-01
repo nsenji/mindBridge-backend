@@ -132,3 +132,6 @@ dist
 
 # ignoring the db.config.js 
 db.config.js
+
+#uploads
+/public/uploads

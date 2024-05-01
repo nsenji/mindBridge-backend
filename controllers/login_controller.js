@@ -3,7 +3,7 @@ var database = require("../database/index");
 const bcrypt = require('bcrypt');
 const Patient = database.Patient;
 const Doctor = database.Doctor;
-
+const Avatar = database.Avatar;
 
 
 // Patient login
@@ -35,7 +35,13 @@ exports.doctor_login = async (req, res, next) => {
 
     try{
         // returns null if no one exists with that email or an object of user if they exist
-        const doctor = await Doctor.findOne({ where: { email: req.body.email } });
+        const doctor = await Doctor.findOne({ where: { email: req.body.email },
+        include: {
+            model: Avatar,
+            attributes: ['file_name'],
+            as: 'avatar',
+        }
+        });
 
         if(!doctor){
             console.log("This response")
