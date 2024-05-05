@@ -9,7 +9,7 @@ exports.uploadImage = async (req, res, next) => {
     const fileExtension = getFileExtension2(originalName)
     const filename = doctorID + "." + fileExtension
 
-    object = {
+   let object = {
         doctorID: doctorID,
         file_name: filename
     }
@@ -19,7 +19,6 @@ exports.uploadImage = async (req, res, next) => {
             res.status(201).json({ message: "avatar uploaded successfully", data: data });
         })
         .catch(err => {
-
             res.status(400).json({ message: "There was an error while uploading" + err })
         })
 

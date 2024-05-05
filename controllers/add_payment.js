@@ -3,7 +3,6 @@ const Payment = database.Payment;
 
 exports.add_payment = async (req, res, next) => {
 
-
     const payment_data = {
         date: req.body.date,
         time: req.body.time,
