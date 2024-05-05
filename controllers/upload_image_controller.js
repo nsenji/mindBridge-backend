@@ -9,11 +9,10 @@ exports.uploadImage = async (req, res, next) => {
     const fileExtension = getFileExtension2(originalName)
     const filename = doctorID + "." + fileExtension
 
-    object = {
+    let object = {
         doctorID: doctorID,
         file_name: filename
     }
-
     await Avatar.create(object)
         .then(data => {
             res.status(201).json({ message: "avatar uploaded successfully", data: data });
