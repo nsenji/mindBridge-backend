@@ -15,7 +15,7 @@ function getFileExtension(filename) {
 
 const storage_1 = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/uploads')
+        cb(null, '/public/uploads')
     },
     filename: function (req, file, cb) {
         const doctorID = req.body.doctorID
