@@ -10,7 +10,7 @@ function getFileExtension(filename) {
     const extension = parts[parts.length - 1];
 
     // Return the file extension 
-    return extension.toLowerCase(); 
+    return extension.toLowerCase()
 }
 
 const storage_1 = multer.diskStorage({
