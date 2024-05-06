@@ -134,3 +134,4 @@ dist
 db.config.js
 
 #uploads
+public/uploads
