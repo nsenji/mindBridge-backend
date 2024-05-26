@@ -19,7 +19,6 @@ exports.patient_login = async (req, res, next) => {
     // verify whether the password belongs to the email sent
 
     const passwordMatch = await bcrypt.compare(req.body.password, patient.password);
-
     if(passwordMatch){
         return res.status(201).json({message:"Login successful", data: patient});
     }else{
