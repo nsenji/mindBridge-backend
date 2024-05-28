@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const Patient = database.Patient;
 const Doctor = database.Doctor;
 const Avatar = database.Avatar;
-
+const jwt = require("jsonwebtoken")
 
 // Patient login
 exports.patient_login = async (req, res, next) => {
@@ -12,17 +12,18 @@ exports.patient_login = async (req, res, next) => {
     // returns null if no one exists with that email or an object of user if they exist
     const patient = await Patient.findOne({ where: { email: req.body.email } });
 
-    if(!patient){
-        return res.status(401).json({message:"A user with that email doesnt exist"})
+    if (!patient) {
+        return res.status(401).json({ message: "A user with that email doesnt exist" })
     }
 
     // verify whether the password belongs to the email sent
 
     const passwordMatch = await bcrypt.compare(req.body.password, patient.password);
-    if(passwordMatch){
-        return res.status(201).json({message:"Login successful", data: patient});
-    }else{
-        return res.status(401).json({message: "Wrong password"});
+    if (passwordMatch) {
+
+        return res.status(201).json({ message: "Login successful", data: patient });
+    } else {
+        return res.status(401).json({ message: "Wrong password" });
     }
 }
 
@@ -32,30 +33,40 @@ exports.patient_login = async (req, res, next) => {
 // doctor login
 exports.doctor_login = async (req, res, next) => {
 
-    try{
+    try {
         // returns null if no one exists with that email or an object of user if they exist
-        const doctor = await Doctor.findOne({ where: { email: req.body.email },
-        include: {
-            model: Avatar,
-            attributes: ['file_name'],
-            as: 'avatar',
-        }
+        const doctor = await Doctor.findOne({
+            where: { email: req.body.email },
+            include: {
+                model: Avatar,
+                attributes: ['file_name'],
+                as: 'avatar',
+            }
         });
 
-        if(!doctor){
+        if (!doctor) {
             console.log("This response")
-            return res.status(404).json({message:"A user with that email doesnt exist"})
+            return res.status(404).json({ message: "A user with that email doesnt exist" })
         }
 
-            // verify whether the password belongs to the email sent
+        // verify whether the password belongs to the email sent
         const passwordMatch = await bcrypt.compare(req.body.password, doctor.password);
 
-        if(passwordMatch){
-            return res.status(201).json({message:"Login successful", data: doctor});
-        }else{
-            return res.status(401).json({message: "Wrong password"});
+        if (passwordMatch) {
+            try {
+                const token = jwt.sign({ doc_ID: doctor.doc_ID }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+                doctor.dataValues.jwtToken = token
+                console.log(doctor)
+
+                return res.status(201).json({ message: "Login successful", data: doctor });
+            } catch (error) {
+                console.log(error)
+            }
+
+        } else {
+            return res.status(401).json({ message: "Wrong password" });
         }
-    } catch(error){
+    } catch (error) {
         return res.status(401).json({ message: "Can't Login" + error })
     }
 }
