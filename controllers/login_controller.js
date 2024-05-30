@@ -54,10 +54,10 @@ exports.doctor_login = async (req, res, next) => {
 
         if (passwordMatch) {
             try {
-                const token = jwt.sign({ doc_ID: doctor.doc_ID }, process.env.JWT_SECRET_KEY, { expiresIn: '3h' });
-                doctor.dataValues.jwtToken = token
+                const user_token = jwt.sign({ user : doctor }, process.env.JWT_SECRET_KEY, { expiresIn: '3h' });
+                // doctor.dataValues.jwtToken = token
 
-                return res.status(201).json({ message: "Login successful", data: doctor });
+                return res.status(201).json({ message: "Login successful", data: user_token });
             } catch (error) {
                 return res.status(401).json({ message: "Login error" + error })
             }
