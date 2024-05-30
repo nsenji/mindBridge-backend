@@ -54,20 +54,19 @@ exports.doctor_login = async (req, res, next) => {
 
         if (passwordMatch) {
             try {
-                const token = jwt.sign({ doc_ID: doctor.doc_ID }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+                const token = jwt.sign({ doc_ID: doctor.doc_ID }, process.env.JWT_SECRET_KEY, { expiresIn: '3h' });
                 doctor.dataValues.jwtToken = token
-                console.log(doctor)
 
                 return res.status(201).json({ message: "Login successful", data: doctor });
             } catch (error) {
-                console.log(error)
+                return res.status(401).json({ message: "Login error" + error })
             }
 
         } else {
             return res.status(401).json({ message: "Wrong password" });
         }
     } catch (error) {
-        return res.status(401).json({ message: "Can't Login" + error })
+        return res.status(401).json({ message: "Login error" + error })
     }
 }
 
