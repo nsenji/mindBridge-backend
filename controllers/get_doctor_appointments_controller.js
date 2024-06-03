@@ -2,6 +2,8 @@ const database = require('../database/index')
 const SelectedAppointment = database.SelectedAppointment
 const Patient = database.Patient
 const Diagnosis = database.Diagnosis
+const moment = require('moment');
+
 
 exports.returnDoctorAppointments = async (req, res, next)=>{
    try{
@@ -17,9 +19,14 @@ exports.returnDoctorAppointments = async (req, res, next)=>{
                 }
             }
         })
-        let upcomingAppointments = doctorAppointments.filter(app => new Date(`${app.date}T${app.time}:00`) > new Date())
+        let activeAppointments = doctorAppointments.filter((value) => {
+            const dateString = value.date;
+            const formattedDate = moment(dateString, "ddd, DD MMM YYYY").format("YYYY-MM-DD");
+            const currentDate = moment();
+            return formattedDate >= currentDate.format("YYYY-MM-DD")
+        })
 
-        return res.status(200).json({data: upcomingAppointments})
+        return res.status(200).json({data: activeAppointments})
    } catch(error) {
         return res.status(400).json({message : "Couldn't get Appointments: " + error.message})
    }
