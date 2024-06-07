@@ -45,7 +45,6 @@ exports.doctor_login = async (req, res, next) => {
         });
 
         if (!doctor) {
-            console.log("This response")
             return res.status(404).json({ message: "A user with that email doesnt exist" })
         }
 
