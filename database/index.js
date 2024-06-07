@@ -50,6 +50,8 @@ database.Patient.hasMany(database.SelectedAppointment, {foreignKey: 'patientID'}
 // payments
 database.Payment.belongsTo(database.Doctor, {foreignKey: 'doctorID', targetKey: 'doc_ID'})
 database.Doctor.hasMany(database.Payment, {foreignKey: 'doctorID'})
+database.Payment.belongsTo(database.Patient, {foreignKey: 'patientID', targetKey: 'patient_ID'})
+database.Patient.hasMany(database.Payment, {foreignKey: 'patientID'})
 
 
 //Diagnosis
